@@ -54,15 +54,18 @@ def candidates(word):
 
 #Check the list of words
 def checkword(text):
-	print("List of incorrect words\n")
+	#print("List of incorrect words\n")
 
 	with open("input.txt", 'w') as out:
 		out.write(text)
 	Wordslist = Counter(tokenize(open("input.txt").read()))
 
+	new_string = text
 	for i in Wordslist:
 		if i not in Dictionary:
-			print(i, ": ", candidates(i))
+			new_string = new_string.replace(i, candidates(i)[0])
+			#print(i, ": ", candidates(i))
+	return new_string
 
 
 reflections = {
@@ -132,11 +135,12 @@ class Chat(object):
 		while user_input != quit:
 			user_input = quit
 			try:
-				user_input = input(">")
+				test_input = input(">")
+				user_input = checkword(test_input)
 			except EOFError:
 				print(user_input)
 			if user_input:
-				checkword(user_input)
+				print(user_input)
 				while user_input[-1] in "!.":
 					user_input = user_input[:-1]
 				print(self.respond(user_input))
