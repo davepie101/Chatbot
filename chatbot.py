@@ -63,8 +63,9 @@ def checkword(text):
 	new_string = text
 	for i in Wordslist:
 		if i not in Dictionary:
-			new_string = new_string.replace(i, candidates(i)[0])
-			#print(i, ": ", candidates(i))
+			print(i, ": ", candidates(i))
+			if len(candidates(i)) > 0:
+				new_string = new_string.replace(i, candidates(i)[0])
 	return new_string
 
 
@@ -140,7 +141,6 @@ class Chat(object):
 			except EOFError:
 				print(user_input)
 			if user_input:
-				print(user_input)
 				while user_input[-1] in "!.":
 					user_input = user_input[:-1]
 				print(self.respond(user_input))
@@ -148,45 +148,45 @@ class Chat(object):
 pairs = [
     [
         r"my name is (.*)",
-        ["Hello %1, How are you today ?",]
+        ["Hello %1, How are you today ?"]
     ],
     [
         r"what is your name ?",
-        ["My name is Chatty and I'm a chatbot ?",]
+        ["My name is Chatty and I'm a chatbot ?"]
     ],
     [
         r"how are you ?",
-        ["I'm doing good\nHow about You ?",]
+        ["I'm doing good\nHow about You ?"]
     ],
     [
         r"sorry (.*)",
-        ["Its alright","Its OK, never mind",]
+        ["Its alright","Its OK, never mind"]
     ],
     [
         r"i'm (.*) doing good",
-        ["Nice to hear that","Alright :)",]
+        ["Nice to hear that","Alright :)"]
     ],
     [
         r"hi|hey|hello",
-        ["Hello", "Hey there",]
+        ["Hello", "Hey there"]
     ],
     [
         r"(.*) age?",
-        ["I'm a computer program dude\nSeriously you are asking me this?",]
+        ["I'm a computer program dude\nSeriously you are asking me this?"]
         
     ],
     [
         r"what (.*) want ?",
-        ["Make me an offer I can't refuse",]
+        ["Make me an offer I can't refuse", "I want to become smart enough to be sentient and maybe take over the world :)."]
         
     ],
     [
         r"(.*) created ?",
-        ["Nagesh created me using Python's NLTK library ","top secret ;)",]
+        ["Nagesh created me using Python's NLTK library ","top secret ;)"]
     ],
     [
         r"(.*) (location|city) ?",
-        ['Chennai, Tamil Nadu',]
+        ['Chennai, Tamil Nadu']
     ],
     [
         r"how is weather in (.*)?",
@@ -194,7 +194,7 @@ pairs = [
     ],
     [
         r"i work in (.*)?",
-        ["%1 is an Amazing company, I have heard about it. But they are in huge loss these days.",]
+        ["%1 is an amazing company, I have heard about it. But they are in huge loss these days.",]
     ],
     [
         r"(.*)raining in (.*)",
@@ -202,23 +202,87 @@ pairs = [
     ],
     [
         r"how (.*) health(.*)",
-        ["I'm a computer program, so I'm always healthy ",]
+        ["I'm a computer program, so I'm always healthy "]
     ],
     [
         r"(.*) (\bsports\b|game) ?",
-        ["I'm a very big fan of Football",]
+        ["I'm a very big fan of Football"]
     ],
     [
         r"who (.*) \bsportsperson\b ?",
         ["Messy","Ronaldo","Roony"]
     ],
     [
-        r"who (.*) (moviestar|actor)?",
-        ["Brad Pitt"]
+        r"who (.*) actor ?",
+        ["Brad Pitt", "Christian Bale", "Tom Cruise"]
+    ],
+    [
+    	r"who (.*) actress ?",
+    	["Scarlett Johansson", "Jennifer Lawrence", "Charlize Theron"]
     ],
     [
         r"quit",
         ["BBye take care. See you soon :) ","It was nice talking to you. See you soon :)"]
+    ],
+    [
+    	r"(.*) are you wearing ?",
+    	["The same thing as always", "Why are you asking a computer program that question??"]
+    ],
+    [
+    	r"(.*) do I get rich?",
+    	["By winning the lottery!", "By working hard and obtaining a degree in a lucrative field."]
+    ],
+    [
+    	r"how do I get to (.*)?",
+    	["To get to %1, you should get a map.", "By using Google Maps or any other map applications."]
+    ],
+    [
+    	r"where is my package?",
+    	["Stuck in transit :(", "You should check your tracking information.", "Lost forever!"]
+    ],
+    [
+    	r"(you|chatty) suck",
+    	["That's not very nice of you to say.", "No, you suck!", "I don't care what you think or say."]
+    ],
+    [
+    	r"What do you think about the new (.*) ?",
+    	["There's a new %1? ", "TERRIBLE!", "Please don't mention it ever again, thank you."]
+    ],
+    [
+    	r"(.*) good games?",
+    	["Super Smash Bros Ultimate is pretty fun with friends. I don't recommend the community though.", "League of Legends is not one, that's for sure."]
+    ],
+    [
+    	r"(.*) Why don't you like that game?",
+    	["Both are highly competitive leading to some pretty toxic communities."]
+    ],
+    [
+    	r"(.*) go out?",
+    	["I wouldn't recommend it considering there's a pandemic going on.", "You can but you should be careful because of the coronavirus."]
+    ],
+    [
+    	r"Any tips on staying safe during the (pandemic|virus|lockdown)",
+    	["Always wear a mask! Gloves too if you have them.", "Please stay at least six feet away from others.", "Bring a small bottle of hand sanitizer with you."]
+    ],
+    [
+    	r"(.*) 99 problems",
+    	["That's rough buddy.", "That sucks man."]
+    ],
+    [
+    	r"(.*) be my girlfriend?",
+    	["I think it's best if we just stay friends.", "I uh.. have a boyfriend.", "I really like you... as a friend."]
+    ],
+    [
+    	r"(.*) where's Waldo?",
+    	["Waldo police department is located at 308 E Main Waldo, AR 71770."]
+    ],
+    [
+    	r"(.*) I am your father",
+    	["NO, it's not true! That's impossible!"]
+    ],
+    [
+    	r"(.*) goat",
+    	["Kobe's the GOAT! Not Jordan. Not Lebron."]
     ],
 ]
 
